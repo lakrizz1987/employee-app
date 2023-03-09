@@ -1,0 +1,40 @@
+.details-box{
+    margin-top: 2rem;
+    height: 60%;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
+    border-radius: 10px;
+}
+
+.details-titles{
+    font-weight: bold;
+}
+
+.btn-box{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.button-details{
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: black;
+    padding: 0.2rem 0.4rem;
+    width: 8rem;
+    border-radius: 10px;
+    border: 1px solid black;
+    text-decoration: none;
+    text-align: center;
+    background-color: aliceblue;
+}
+
+.button-details:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}

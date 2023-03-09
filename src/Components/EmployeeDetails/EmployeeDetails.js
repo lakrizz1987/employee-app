@@ -1,26 +1,71 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import api from "../../service/api";
+import "./EmployeeDetails.css"
+import '../Home/Home.css';
 
 const EmployeeDetails = () => {
 
-    const [employee,setEmployee]= useState();
+    const [currentEmpl, setCurrent] = useState('')
     const params = useParams();
 
-    useEffect(()=>{
-        async function getOneEmployee(){
+    useEffect(() => {
+        async function getOneEmployee() {
             const data = await api.getOneById(params.id);
-            console.log(data)
+            setCurrent(data)
         }
 
         getOneEmployee()
-    },[params.id])
 
+    }, [params.id])
 
-    return(
-        <section className="details-box">
-            {params.id}
-        </section>
+    return (
+        currentEmpl ?
+            <>
+                <section className="details-box">
+                    <table>
+
+                        <tbody>
+
+                            <tr>
+                                <td className="details-titles">
+                                    NAME
+                                </td>
+                                <td>{currentEmpl.name}</td>
+                            </tr>
+                            <tr>
+                                <td className="details-titles">
+                                    Email
+                                </td>
+                                <td>{currentEmpl.email}</td>
+                            </tr>
+                            <tr>
+                                <td className="details-titles">
+                                    Birth Date
+                                </td>
+                                <td>{currentEmpl.birthDate}</td>
+                            </tr>
+                            <tr>
+                                <td className="details-titles">
+                                    Phone Number
+                                </td>
+                                <td>{currentEmpl.phone}</td>
+                            </tr>
+                            <tr>
+                                <td className="details-titles">
+                                    Salary
+                                </td>
+                                <td>{currentEmpl.salary} BGN</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <div className="btn-box">
+                    <Link className="button-details" to={`/edit/${params.id}`}>Edit</Link>
+                    <Link className="button-details" to={`/delete/${params.id}`}>Delete</Link>
+                </div>
+            </>
+            : ''
     )
 }
 
