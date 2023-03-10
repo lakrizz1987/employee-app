@@ -39,7 +39,7 @@ const Home = () => {
                 <thead>
                     <tr>
                         <th>Full Name</th>
-                        <th>Task</th>
+                        <th>Tasks</th>
                     </tr>
                 </thead>
 

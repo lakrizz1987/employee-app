@@ -1,0 +1,24 @@
+.employee-form{
+    height: 100%;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    
+}
+
+.employee-form input{
+    font-size: 22px;
+}
+
+.employee-form label{
+    font-weight: bold;
+}
+
+.employee-form input[type="submit"]{
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: bold;
+    padding: 5px;
+}
