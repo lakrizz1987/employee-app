@@ -33,6 +33,24 @@ const addEmployee = async (employee) => {
     }
 };
 
+const editEmployee = async (employee,id) => {
+    try {
+        const response = await fetch(`${baseUrl}/users/${id}.json`, {
+            method: 'PUT',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(employee)
+        });
+        if (response.ok === false) {
+            const errData = await response.json();
+            throw new Error(errData.message)
+        }
+        const data = await response.json();
+        return data;
+    } catch (err) {
+        alert(err.message)
+    }
+};
+
 const deleteEmployee = async (id) => {
     try {
         const response = await fetch(`${baseUrl}/users/${id}.json`, {
@@ -83,7 +101,8 @@ const api = {
     getOneById,
     getAllTasks,
     addEmployee,
-    deleteEmployee
+    deleteEmployee,
+    editEmployee
 }
 
 export default api;

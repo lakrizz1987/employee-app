@@ -19,6 +19,14 @@
 .employee-form input[type="submit"]{
     margin-top: 20px;
     cursor: pointer;
-    font-size: bold;
+    font-weight: bold;
     padding: 5px;
+    min-width: 100px;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+.employee-form input[type="submit"]:hover{
+    background-color: white;
+    
 }

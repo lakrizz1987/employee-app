@@ -61,6 +61,7 @@ const EmployeeDetails = () => {
                     </table>
                 </section>
                 <div className="btn-box">
+                    <Link className="button-details" to={`/`}>Back</Link>
                     <Link className="button-details" to={`/edit-employee/${params.id}`}>Edit</Link>
                     <Link className="button-details" to={`/delete-employee/${params.id}`}>Delete</Link>
                 </div>

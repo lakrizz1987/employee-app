@@ -1,0 +1,27 @@
+.employee-form div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.link{
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: bold;
+    padding: 5px;
+    border: 2px solid black;
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+    font-size: 22px;
+    background-color: #EFEFEF;
+    border-radius: 10px;
+    min-width: 100px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.link:hover{
+    background-color: white;
+}
