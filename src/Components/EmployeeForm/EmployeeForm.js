@@ -1,6 +1,6 @@
 import './EmloyeeForm.css';
 
-const EmployeeForm = () => {
+const EmployeeForm = ({text}) => {
     return (
         <form className="employee-form" action="">
             <label for="fullName">Full name:</label>
@@ -13,7 +13,7 @@ const EmployeeForm = () => {
             <input type="date" id="date" name="date" defaultValue='' required />
             <label for="salary">Salary:</label>
             <input type="number" id="salary" name="salary" defaultValue='' required/>
-            <input type="submit" value="Create" />
+            <input type="submit" value={text} />
         </form>
     )
 }

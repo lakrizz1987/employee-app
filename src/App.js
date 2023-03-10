@@ -11,7 +11,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/employee/:id' element={<EmployeeDetails/>}/>
-        <Route path='/create-employee' element={<EmployeeForm/>}/>
+        <Route path='/create-employee' element={<EmployeeForm text='Create'/>}/>
         
       </Routes>
     </div>
