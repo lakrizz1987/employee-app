@@ -1,13 +1,20 @@
+import { useNavigate } from 'react-router-dom';
+import api from '../../service/api';
 import './EmloyeeForm.css';
 
 const EmployeeForm = ({ text }) => {
-    
-    function submitHandler(e) {
-        e.preventDefault()
+    const navigate = useNavigate();
+
+    async function submitHandler(e) {
+        e.preventDefault();
         const formData = new FormData(e.currentTarget);
 
         const { fullName, email, phone, date, salary } = Object.fromEntries(formData);
-        console.log(salary)
+
+        await api.addEmployee({ name: fullName, email, phone, birthDate: date.split("-").reverse().join('-'), salary });
+
+        navigate('/')
+
     }
 
 
