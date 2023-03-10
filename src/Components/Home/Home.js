@@ -15,7 +15,7 @@ const Home = () => {
             const data = [];
             for (const key in employees) {
                 const searchedTask = Object.values(tasks).filter(task => task.userId === key && task.completed === false)[0];
-                console.log(searchedTask)
+                
                 data.push({
                     id: key,
                     birthDate: employees[key].birthDate,
