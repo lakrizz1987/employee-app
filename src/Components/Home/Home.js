@@ -11,10 +11,18 @@ const Home = () => {
         async function getAllEmployees() {
             const employees = await api.getAll();
             const tasks = await api.getAllTasks();
-
+            
             const data = [];
             for (const key in employees) {
-                const searchedTask = Object.values(tasks).filter(task => task.userId === key && task.completed === false)[0];
+                let searchedTask = '';
+
+                for (const task of Object.entries(tasks)) {
+                    if(task[1].userId === key && task[1].completed === false){
+                        searchedTask = task
+                        
+                    }
+                }
+                //const searchedTask = Object.entries(tasks)[0].filter(task => task.userId === key && task.completed === false)[0];
                 
                 data.push({
                     id: key,
@@ -52,8 +60,8 @@ const Home = () => {
                                 </td>
                                 <td>{employee.task ?
                                     <>
-                                        <p>{employee.task.title}</p>
-                                        <Link to={`/tasks/${employee.task.taskId}`}>View more</Link>
+                                        <p>{employee.task[1].title}</p>
+                                        <Link to={`/task/${employee.task[0]}`}>View more</Link>
                                     </>
                                     :
                                     <>

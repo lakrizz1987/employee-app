@@ -95,6 +95,20 @@ const getOneById = async (id) => {
     }
 };
 
+const getOneTaskById = async (id) => {
+    try {
+        const res = await fetch(`${baseUrl}/tasks/${id}.json`);
+        if (!res.ok) {
+            const err = await res.json();
+            throw new Error({ message: err.message })
+        }
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        console.log(error)
+    }
+};
+
 
 const api = {
     getAll,
@@ -102,7 +116,8 @@ const api = {
     getAllTasks,
     addEmployee,
     deleteEmployee,
-    editEmployee
+    editEmployee,
+    getOneTaskById
 }
 
 export default api;
