@@ -12,9 +12,8 @@ const TaskDetails = () => {
             const result = await api.getOneTaskById(params.id);
             setTask(result)
         }
-
         getTask()
-    }, [])
+    }, [params.id])
 
     return (
         task ?
@@ -25,8 +24,8 @@ const TaskDetails = () => {
 
                 <div className="btn-box">
                     <Link className="button-details" to={`/`}>Back</Link>
-                    <Link className="button-details" to={`/edit-employee/${params.id}`}>Edit</Link>
-                    <Link className="button-details" to={`/delete-employee/${params.id}`}>Delete</Link>
+                    <Link className="button-details" to={`/edit-task/${params.id}`}>Edit</Link>
+                    <Link className="button-details" to={`/delete-task/${params.id}`}>Delete</Link>
                 </div>
             </div>
             :''

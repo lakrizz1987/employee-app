@@ -66,6 +66,7 @@ const deleteEmployee = async (id) => {
         alert(err.message)
     }
 }
+
 const getAllTasks = async () => {
     try {
         const res = await fetch(`${baseUrl}/tasks.json`);
@@ -109,6 +110,22 @@ const getOneTaskById = async (id) => {
     }
 };
 
+const deleteTask = async (id) => {
+    try {
+        const response = await fetch(`${baseUrl}/tasks/${id}.json`, {
+            method: 'DELETE',
+        });
+        if (response.ok === false) {
+            const errData = await response.json();
+            throw new Error(errData.message)
+        }
+        const data = await response.json();
+        return data;
+    } catch (err) {
+        alert(err.message)
+    }
+}
+
 
 const api = {
     getAll,
@@ -117,7 +134,8 @@ const api = {
     addEmployee,
     deleteEmployee,
     editEmployee,
-    getOneTaskById
+    getOneTaskById,
+    deleteTask
 }
 
 export default api;

@@ -7,6 +7,7 @@ import EmployeeForm from './Components/EmployeeForm/EmployeeForm';
 import DeleteEmloyee from './Components/DeleteEmployee/DeleteEmloyee';
 import EditEmployee from './Components/EditEmployee/EditEmployee';
 import TaskDetails from './Components/TaskDetails/TaskDetails';
+import DeleteTask from './Components/DeleteTask/DeleteTask';
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
         <Route path='/delete-employee/:id' element={<DeleteEmloyee/>}/>
         <Route path='/edit-employee/:id' element={<EditEmployee/>}/>
         <Route path='/task/:id' element={<TaskDetails/>}/>
+        <Route path='/delete-task/:id' element={<DeleteTask/>}/>
+
       </Routes>
     </div>
   );
