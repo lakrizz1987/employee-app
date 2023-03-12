@@ -11,8 +11,8 @@ const CompleteTask = () => {
              
            await api.editTask({completed:true,completedDate:Number(new Date().getMonth())+1},params.id)
            const employee = await api.getOneById(params.employeeId)
-           
-           employee.completedTasks.push({taskId:params.id, completedDate:(Number(new Date().getMonth())+1)})
+           const date = new Date()
+           employee.completedTasks.push({taskId:params.id, completedDate:date.toDateString()})
           
            await api.editEmployee({...employee },params.employeeId)
         }

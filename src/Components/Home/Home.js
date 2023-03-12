@@ -7,6 +7,7 @@ const Home = () => {
 
     const [employees, setEmployees] = useState([]);
     const [allTasks, setAllTasks] = useState();
+    const [sortedEmloyees,setSortedEmployees] = useState([]);
 
     useEffect(() => {
         async function getAllEmployees() {
@@ -39,6 +40,7 @@ const Home = () => {
             }
 
             setEmployees(data.sort((a, b) => a.name.localeCompare(b.name)));
+            setSortedEmployees(data.sort((a, b) => a.name.localeCompare(b.name)))
         }
 
         getAllEmployees();
@@ -46,68 +48,88 @@ const Home = () => {
 
     function sortHandler(e) {
         if (e.target.value === 'Completed tasks') {
-            setEmployees(state => {
-                state.sort((a, b) => b.completedTasks.length - a.completedTasks.length);
-                return [...state]
+            setSortedEmployees(employees.sort((a, b) => b.completedTasks.length - a.completedTasks.length))
+            
+        } else if (e.target.value === 'Name') {
+            setSortedEmployees(employees.sort((a, b) => a.name.localeCompare(b.name)))
+            
+        } else if (e.target.value === 'Top 5 in month') {
+
+            let past30Days = []
+            past30Days = [...Array(30).keys()].map(index => {
+                const date = new Date();
+                date.setDate(date.getDate() - index);
+
+                return date.toDateString();
+            });
+            
+            setSortedEmployees(state => {
+                const arr = []
+
+                for (const el of state) {
+                    const newData = el.completedTasks.filter(x => past30Days.includes(x.completedDate))
+                    arr.push({...el, completedTasks: [...newData,'none']})
+                }
+
+                return arr.sort((a, b) => b.completedTasks.length - a.completedTasks.length)
             })
-        }else if(e.target.value === 'Name'){
-            setEmployees(state => {
-                state.sort((a, b) => a.name.localeCompare(b.name));
-                return [...state]
-            })
+
+                
+            
         }
 
     }
-    
-    return (
-        employees ?
-        <>
-            <section className="table-box">
-                <div>
-                    <label htmlFor="sort">Sort by:</label>
-                    <select name="sort" defaultValue={'Name'} onChange={sortHandler}>
-                        <option>Name</option>
-                        <option>Completed tasks</option>
-                    </select>
-                </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Number</th>
-                            <th>Full Name</th>
-                            <th>Tasks</th>
-                            <th>Completed Tasks</th>
-                        </tr>
-                    </thead>
 
-                    <tbody>
-                        {employees.map((employee, index) => {
-                            return (
-                                <tr key={employee.id}>
-                                    <td>{Number(index) + 1}</td>
-                                    <td>
-                                        <Link to={`/employee/${employee.id}`}>{employee.name}</Link>
-                                    </td>
-                                    <td>{employee.task ?
-                                        <>
-                                            <p>{employee.task[1].title}</p>
-                                            <Link to={`/task/${employee.task[0]}/${employee.id}`}>View more</Link>
-                                        </>
-                                        :
-                                        <>
-                                            <p>No tasks</p>
-                                            <Link to={`/create-task/${employee.id}`}>Add task</Link>
-                                        </>
-                                    }</td>
-                                    <td>{employee.completedTasks.length - 1}</td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
-            </section>
-        </>
-        : ''
+    return (
+        sortedEmloyees ?
+            <>
+                <section className="table-box">
+                    <div>
+                        <label htmlFor="sort">Sort by:</label>
+                        <select name="sort" defaultValue={'Name'} onChange={sortHandler}>
+                            <option>Name</option>
+                            <option>Completed tasks</option>
+                            <option>Top 5 in month</option>
+                        </select>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Number</th>
+                                <th>Full Name</th>
+                                <th>Tasks</th>
+                                <th>Completed Tasks</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {sortedEmloyees.map((employee, index) => {
+                                return (
+                                    <tr key={employee.id}>
+                                        <td>{Number(index) + 1}</td>
+                                        <td>
+                                            <Link to={`/employee/${employee.id}`}>{employee.name}</Link>
+                                        </td>
+                                        <td>{employee.task ?
+                                            <>
+                                                <p>{employee.task[1].title}</p>
+                                                <Link to={`/task/${employee.task[0]}/${employee.id}`}>View more</Link>
+                                            </>
+                                            :
+                                            <>
+                                                <p>No tasks</p>
+                                                <Link to={`/create-task/${employee.id}`}>Add task</Link>
+                                            </>
+                                        }</td>
+                                        <td>{employee.completedTasks.length - 1}</td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
+                </section>
+            </>
+            : ''
     )
 }
 
