@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom"
 import api from "../../service/api";
+import Loader from "../Loader/Loader"
 
 const EditTask = () => {
     const params = useParams();
@@ -44,7 +45,7 @@ const EditTask = () => {
             <input type="submit" value='Edit' />
             </div>
         </form>
-        : ''
+        : <Loader/>
     )
 }
 

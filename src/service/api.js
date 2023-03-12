@@ -76,7 +76,7 @@ const getAllTasks = async () => {
         const data = await res.json();
         return data;
     } catch (error) {
-        console.log(error)
+        alert(error.message)
     }
 };
 
@@ -91,7 +91,7 @@ const getOneById = async (id) => {
         const data = await res.json();
         return data;
     } catch (error) {
-        console.log(error)
+        alert(error.message)
     }
 };
 
@@ -105,7 +105,7 @@ const getOneTaskById = async (id) => {
         const data = await res.json();
         return data;
     } catch (error) {
-        console.log(error)
+        alert(error.message)
     }
 };
 

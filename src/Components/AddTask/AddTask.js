@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import api from "../../service/api";
 
 const AddTask = () => {
@@ -26,7 +26,10 @@ const AddTask = () => {
             <textarea id="description" name="description" rows="8" cols="50" required></textarea>
             <label htmlFor="date">End Date:</label>
             <input type="date" id="date" name="date" defaultValue='' required />
+            <div>
+            <Link className="link" to={'/'}>Back</Link>
             <input type="submit" value='Create' />
+            </div>
         </form>
     )
 }
