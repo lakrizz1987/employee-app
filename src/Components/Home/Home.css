@@ -2,8 +2,18 @@
     height: 60%;
     width: 60%;
     display: flex;
+    flex-direction: column;
+    gap: 10px;
     justify-content: center;
     align-items: center;
+}
+
+.table-box div{
+  align-self: flex-end;
+}
+
+.table-box div label{
+  margin-right: 5px;
 }
 
 table {

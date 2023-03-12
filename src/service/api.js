@@ -35,7 +35,7 @@ const addEmployee = async (employee) => {
 const editEmployee = async (employee,id) => {
     try {
         const response = await fetch(`${baseUrl}/users/${id}.json`, {
-            method: 'PUT',
+            method: 'PATCH',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(employee)
         });

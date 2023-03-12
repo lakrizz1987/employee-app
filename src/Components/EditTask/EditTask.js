@@ -4,6 +4,7 @@ import api from "../../service/api";
 
 const EditTask = () => {
     const params = useParams();
+    
     const navigate = useNavigate();
     const [task,setTask] = useState();
 
@@ -25,7 +26,7 @@ const EditTask = () => {
 
         await api.editTask({ title, description, dateEx: date },params.id);
 
-        navigate(`/task/${params.id}`)
+        navigate(`/task/${params.id}/${params.employeeId}`)
 
     }
 
@@ -39,7 +40,7 @@ const EditTask = () => {
             <label htmlFor="date">End Date:</label>
             <input type="date" id="date" name="date" defaultValue={task.dateEx} required />
             <div>
-            <Link className="link" to={`/task/${params.id}`}>Back</Link>
+            <Link className="link" to={`/task/${params.id}/${params.employeeId}`}>Back</Link>
             <input type="submit" value='Edit' />
             </div>
         </form>
