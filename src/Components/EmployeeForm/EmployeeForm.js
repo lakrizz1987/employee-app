@@ -11,7 +11,7 @@ const EmployeeForm = ({ text }) => {
 
         const { fullName, email, phone, date, salary } = Object.fromEntries(formData);
 
-        await api.addEmployee({ name: fullName, email, phone, birthDate: date.split("-").reverse().join('-'), salary });
+        await api.addEmployee({ name: fullName, email, phone, birthDate: date, salary });
 
         navigate('/')
 

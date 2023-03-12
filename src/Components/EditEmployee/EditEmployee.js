@@ -11,8 +11,7 @@ const EditEmployee = () => {
     useEffect(() => {
         async function getEmployeeData() {
             const result = await api.getOneById(params.id);
-            
-            result.birthDate = result.birthDate.split('-').reverse().join('-') 
+             
             setEmployee(result)
         }
 
@@ -25,7 +24,7 @@ const EditEmployee = () => {
 
         const { fullName, email, phone, date, salary } = Object.fromEntries(formData);
 
-        await api.editEmployee({ name: fullName, email, phone, birthDate: date.split("-").reverse().join('-'), salary },params.id);
+        await api.editEmployee({ name: fullName, email, phone, birthDate: date, salary },params.id);
 
         navigate(`/employee/${params.id}`)
 

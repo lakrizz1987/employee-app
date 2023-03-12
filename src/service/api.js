@@ -143,6 +143,24 @@ const addTask = async (task) => {
     }
 };
 
+const editTask = async (task,id) => {
+    try {
+        const response = await fetch(`${baseUrl}/tasks/${id}.json`, {
+            method: 'PATCH',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(task)
+        });
+        if (response.ok === false) {
+            const errData = await response.json();
+            throw new Error(errData.message)
+        }
+        const data = await response.json();
+        return data;
+    } catch (err) {
+        alert(err.message)
+    }
+};
+
 
 const api = {
     getAll,
@@ -153,7 +171,8 @@ const api = {
     editEmployee,
     getOneTaskById,
     deleteTask,
-    addTask
+    addTask,
+    editTask
 }
 
 export default api;
