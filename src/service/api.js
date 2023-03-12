@@ -3,7 +3,6 @@ const baseUrl = `https://users-49bf9-default-rtdb.europe-west1.firebasedatabase.
 const getAll = async () => {
     try {
         const res = await fetch(`${baseUrl}/users.json`);
-
         if (res.ok === false) {
             const err = await res.json();
             throw new Error({ message: err.message })
@@ -124,7 +123,25 @@ const deleteTask = async (id) => {
     } catch (err) {
         alert(err.message)
     }
-}
+};
+
+const addTask = async (task) => {
+    try {
+        const response = await fetch(`${baseUrl}/tasks.json`, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(task)
+        });
+        if (response.ok === false) {
+            const errData = await response.json();
+            throw new Error(errData.message)
+        }
+        const data = await response.json();
+        return data;
+    } catch (err) {
+        alert(err.message)
+    }
+};
 
 
 const api = {
@@ -135,7 +152,8 @@ const api = {
     deleteEmployee,
     editEmployee,
     getOneTaskById,
-    deleteTask
+    deleteTask,
+    addTask
 }
 
 export default api;

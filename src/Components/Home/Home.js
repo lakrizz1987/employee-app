@@ -66,7 +66,7 @@ const Home = () => {
                                     :
                                     <>
                                         <p>No tasks</p>
-                                        <Link>Add task</Link>
+                                        <Link to={`/create-task/${employee.id}`}>Add task</Link>
                                     </>
                                 }</td>
 

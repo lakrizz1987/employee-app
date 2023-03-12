@@ -8,6 +8,7 @@ import DeleteEmloyee from './Components/DeleteEmployee/DeleteEmloyee';
 import EditEmployee from './Components/EditEmployee/EditEmployee';
 import TaskDetails from './Components/TaskDetails/TaskDetails';
 import DeleteTask from './Components/DeleteTask/DeleteTask';
+import AddTask from './Components/AddTask/AddTask';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/edit-employee/:id' element={<EditEmployee/>}/>
         <Route path='/task/:id' element={<TaskDetails/>}/>
         <Route path='/delete-task/:id' element={<DeleteTask/>}/>
+        <Route path='/create-task/:id' element={<AddTask/>}/>
 
       </Routes>
     </div>

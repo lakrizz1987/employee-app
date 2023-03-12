@@ -21,7 +21,6 @@ const TaskDetails = () => {
                 <h1>{task.title}</h1>
                 <p>{task.description}</p>
                 <p>End date: {task.dateEx}</p>
-
                 <div className="btn-box">
                     <Link className="button-details" to={`/`}>Back</Link>
                     <Link className="button-details" to={`/edit-task/${params.id}`}>Edit</Link>
