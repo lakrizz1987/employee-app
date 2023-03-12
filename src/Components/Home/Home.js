@@ -6,12 +6,14 @@ import "./Home.css"
 const Home = () => {
 
     const [employees, setEmployees] = useState([]);
-
+    const [allTasks,setAllTasks] = useState();
+    
     useEffect(() => {
         async function getAllEmployees() {
             const employees = await api.getAll();
             const tasks = await api.getAllTasks();
-            
+            setAllTasks(tasks);
+
             const data = [];
             for (const key in employees) {
                 let searchedTask = '';
@@ -31,7 +33,8 @@ const Home = () => {
                     name: employees[key].name,
                     phone: employees[key].phone,
                     salary: employees[key].salary,
-                    task: searchedTask
+                    task: searchedTask,
+                    completedTasks: employees[key].completedTasks
                 })
             }
 
@@ -61,7 +64,7 @@ const Home = () => {
                                 <td>{employee.task ?
                                     <>
                                         <p>{employee.task[1].title}</p>
-                                        <Link to={`/task/${employee.task[0]}`}>View more</Link>
+                                        <Link to={`/task/${employee.task[0]}/${employee.id}`}>View more</Link>
                                     </>
                                     :
                                     <>

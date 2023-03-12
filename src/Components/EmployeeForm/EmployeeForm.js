@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import api from '../../service/api';
 import './EmloyeeForm.css';
 
@@ -11,7 +11,7 @@ const EmployeeForm = ({ text }) => {
 
         const { fullName, email, phone, date, salary } = Object.fromEntries(formData);
 
-        await api.addEmployee({ name: fullName, email, phone, birthDate: date, salary });
+        await api.addEmployee({ name: fullName, email, phone, birthDate: date, salary, completedTasks:['none'] });
 
         navigate('/')
 
@@ -30,7 +30,10 @@ const EmployeeForm = ({ text }) => {
             <input type="date" id="date" name="date" defaultValue='' required />
             <label htmlFor="salary">Salary:</label>
             <input type="number" id="salary" name="salary" defaultValue='' required />
+            <div>
+            <Link className="link" to='/'>Back</Link>
             <input type="submit" value={text} />
+            </div>
         </form>
     )
 }

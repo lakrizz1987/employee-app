@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import api from "../../service/api";
 
 const EditTask = () => {
@@ -8,14 +8,13 @@ const EditTask = () => {
     const [task,setTask] = useState();
 
     useEffect(() => {
-        async function getEmployeeData() {
+        async function getTaskData() {
             const result = await api.getOneTaskById(params.id);
              
             setTask(result)
-            console.log(result)
         }
 
-        getEmployeeData()
+        getTaskData()
     }, [params.id])
 
     async function editHandler(e) {
@@ -39,7 +38,10 @@ const EditTask = () => {
             <textarea id="description" name="description" rows="8" cols="50" defaultValue={task.description} required></textarea>
             <label htmlFor="date">End Date:</label>
             <input type="date" id="date" name="date" defaultValue={task.dateEx} required />
+            <div>
+            <Link className="link" to={`/task/${params.id}`}>Back</Link>
             <input type="submit" value='Edit' />
+            </div>
         </form>
         : ''
     )

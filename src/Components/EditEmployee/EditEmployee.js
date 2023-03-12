@@ -47,7 +47,6 @@ const EditEmployee = () => {
             <Link className="link" to={`/employee/${params.id}`}>Back</Link>
             <input type="submit" value='Edit' />
             </div>
-            
         </form>
         
         </>

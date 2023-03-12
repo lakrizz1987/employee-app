@@ -25,6 +25,7 @@ const TaskDetails = () => {
                     <Link className="button-details" to={`/`}>Back</Link>
                     <Link className="button-details" to={`/edit-task/${params.id}`}>Edit</Link>
                     <Link className="button-details" to={`/delete-task/${params.id}`}>Delete</Link>
+                    <Link className="button-details" to={`/complete/${params.id}/${params.employeeId}`}>Done</Link>
                 </div>
             </div>
             :''
