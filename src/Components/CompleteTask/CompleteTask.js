@@ -8,22 +8,22 @@ const CompleteTask = () => {
 
     useEffect(() => {
         async function completeTask() {
-             
-           await api.editTask({completed:true,completedDate:Number(new Date().getMonth())+1},params.id)
-           const employee = await api.getOneById(params.employeeId)
-           const date = new Date()
-           employee.completedTasks.push({taskId:params.id, completedDate:date.toDateString()})
-          
-           await api.editEmployee({...employee },params.employeeId)
+
+            const date = new Date()
+            await api.editTask({ completed: true, completedDate: date.toDateString() }, params.id)
+            const employee = await api.getOneById(params.employeeId)
+            employee.completedTasks.push({ taskId: params.id, completedDate: date.toDateString() })
+
+            await api.editEmployee({ ...employee }, params.employeeId)
         }
 
         completeTask()
 
-        setTimeout(()=>{
+        setTimeout(() => {
             navigate('/')
-        },1000)
-        
-    }, [params.id,navigate,params.employeeId])
+        }, 1000)
+
+    }, [params.id, navigate, params.employeeId])
 }
 
 export default CompleteTask
