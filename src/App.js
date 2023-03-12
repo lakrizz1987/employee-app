@@ -27,7 +27,6 @@ function App() {
         <Route path='/create-task/:employeeId' element={<AddTask/>}/>
         <Route path='/edit-task/:id/:employeeId' element={<EditTask/>}/>
         <Route path='/complete/:id/:employeeId' element={<CompleteTask/>}/>
-
       </Routes>
     </div>
   );

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../../service/api";
+import Loader from "../Loader/Loader";
 import "./Home.css"
 
 const Home = () => {
@@ -78,7 +79,7 @@ const Home = () => {
     }
 
     return (
-        sortedEmloyees ?
+        sortedEmloyees.length > 0 ?
             <>
                 <section className="table-box">
                     <div>
@@ -106,15 +107,15 @@ const Home = () => {
                                         <td>
                                             <Link to={`/employee/${employee.id}`}>{employee.name}</Link>
                                         </td>
-                                        <td>{employee.task ?
+                                        <td className="task-box">{employee.task ?
                                             <>
                                                 <p>{employee.task[1].title}</p>
-                                                <Link to={`/task/${employee.task[0]}/${employee.id}`}>View more</Link>
+                                                <Link className="link-taks" to={`/task/${employee.task[0]}/${employee.id}`}>View more</Link>
                                             </>
                                             :
                                             <>
                                                 <p>No tasks</p>
-                                                <Link to={`/create-task/${employee.id}`}>Add task</Link>
+                                                <Link className="link-taks" to={`/create-task/${employee.id}`}>Add task</Link>
                                             </>
                                         }</td>
                                         <td>{employee.completedTasks.length - 1}</td>
@@ -125,7 +126,7 @@ const Home = () => {
                     </table>
                 </section>
             </>
-            : ''
+            : <Loader/>
     )
 }
 

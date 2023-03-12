@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom";
 import api from "../../service/api";
+import Loader from "../Loader/Loader";
 import './TaskDetails.css';
 
 const TaskDetails = () => {
@@ -28,7 +29,7 @@ const TaskDetails = () => {
                     <Link className="button-details" to={`/complete/${params.id}/${params.employeeId}`}>Done</Link>
                 </div>
             </div>
-            :''
+            : <Loader />
     )
 }
 

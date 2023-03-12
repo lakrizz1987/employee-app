@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import api from "../../service/api";
 import "./EmployeeDetails.css"
 import '../Home/Home.css';
+import Loader from "../Loader/Loader";
 
 const EmployeeDetails = () => {
 
@@ -66,7 +67,7 @@ const EmployeeDetails = () => {
                     <Link className="button-details" to={`/delete-employee/${params.id}`}>Delete</Link>
                 </div>
             </>
-            : ''
+            : <Loader/>
     )
 }
 
