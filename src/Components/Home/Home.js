@@ -47,10 +47,7 @@ const Home = () => {
     }, [])
 
     function sortHandler(e) {
-        if (e.target.value === 'Completed tasks') {
-            setSortedEmployees(employees.sort((a, b) => b.completedTasks.length - a.completedTasks.length))
-            
-        } else if (e.target.value === 'Name') {
+        if (e.target.value === 'Name') {
             setSortedEmployees(employees.sort((a, b) => a.name.localeCompare(b.name)))
             
         } else if (e.target.value === 'Top 5 in month') {
@@ -71,7 +68,7 @@ const Home = () => {
                     arr.push({...el, completedTasks: [...newData,'none']})
                 }
 
-                return arr.sort((a, b) => b.completedTasks.length - a.completedTasks.length)
+                return arr.sort((a, b) => b.completedTasks.length - a.completedTasks.length).splice(0,5)
             })
 
                 
@@ -88,7 +85,6 @@ const Home = () => {
                         <label htmlFor="sort">Sort by:</label>
                         <select name="sort" defaultValue={'Name'} onChange={sortHandler}>
                             <option>Name</option>
-                            <option>Completed tasks</option>
                             <option>Top 5 in month</option>
                         </select>
                     </div>
